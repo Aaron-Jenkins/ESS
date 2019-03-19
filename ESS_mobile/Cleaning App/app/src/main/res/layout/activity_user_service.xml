@@ -33,7 +33,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/serviceImage1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
@@ -41,38 +41,38 @@
                         android:src="@drawable/ph4" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/serviceTextView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="Hoovering"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:textSize="24sp"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                        app:layout_constraintTop_toBottomOf="@+id/serviceImage1" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/serviceTextView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Feugiat sed lectus vestibulum mattis ullamcorper. Vel orci porta non pulvinar. Purus gravida quis blandit turpis cursus. Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Neque sodales ut etiam sit amet nisl. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Ultrices in iaculis nunc sed augue. Mauris ultrices eros in cursus turpis massa. Porta non pulvinar neque laoreet suspendisse. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque."
-                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                        app:layout_constraintTop_toBottomOf="@+id/serviceTextView1" />
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/serviceButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Button"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        app:layout_constraintTop_toBottomOf="@+id/serviceTextView2" />
 
                     <Button
-                        android:id="@+id/button6"
+                        android:id="@+id/serviceButton2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:text="Button"
-                        app:layout_constraintStart_toEndOf="@+id/button5"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        app:layout_constraintTop_toBottomOf="@+id/serviceButton1"
+                        />
 
 
                 </android.support.constraint.ConstraintLayout>
@@ -95,7 +95,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/imageView1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
@@ -103,38 +103,37 @@
                         android:src="@drawable/ph2" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="Washing"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:textSize="24sp"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Feugiat sed lectus vestibulum mattis ullamcorper. Vel orci porta non pulvinar. Purus gravida quis blandit turpis cursus. Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Neque sodales ut etiam sit amet nisl. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Ultrices in iaculis nunc sed augue. Mauris ultrices eros in cursus turpis massa. Porta non pulvinar neque laoreet suspendisse. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque."
-                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/button15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Button"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
                     <Button
-                        android:id="@+id/button6"
+                        android:id="@+id/button16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:text="Button"
-                        app:layout_constraintStart_toEndOf="@+id/button5"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        app:layout_constraintStart_toEndOf="@+id/button15" />
 
 
                 </android.support.constraint.ConstraintLayout>
