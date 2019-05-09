@@ -16,7 +16,9 @@ if(!empty($cost)){
     $result = $stmt->execute();
 
     if($result){
+        $results = array('cost' => $result);
         $returnData = array('status' => true, 'message' => 'Cost Added Successfully...');
+        $returnData += $results;
     }else{
         $returnData = array('status' => false, 'message' => 'Can\'t Add Cost...');
     }
