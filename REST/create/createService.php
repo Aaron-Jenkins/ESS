@@ -26,6 +26,7 @@ if(!empty($firstName) && !empty($lastName) && !empty($password)){
     }else{
         $returnData = array('status' => false, 'message' => 'Can\'t Add User...');
     }
+    header('Content-Type: text/json');
     echo json_encode($returnData);
 }
 
