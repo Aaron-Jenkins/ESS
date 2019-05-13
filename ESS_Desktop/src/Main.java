@@ -7,18 +7,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
-import org.json.JSONException;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Login extends Application {
+public class Main extends Application {
 
     private Stage window;
-    Menu menu;
-
+    private Scene login, mainMenu;
     public static void main(String[] args) {
+
         launch(args);
     }
 
@@ -26,13 +26,13 @@ public class Login extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         window = primaryStage;
-        window.setTitle("LOGIN_MOCKUP");
-        // init grid
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setHgap(8);
-        grid.setVgap(10);
+        window.setTitle("mainMenuMockup");
 
+        // init grid
+        GridPane layout = new GridPane();
+        layout.setPadding(new Insets(10, 10, 10, 10));
+        layout.setHgap(8);
+        layout.setVgap(10);
 
         // Username
         Label userLabel = new Label("Username:");
@@ -50,25 +50,30 @@ public class Login extends Application {
         loginButton.setOnAction(event -> {
             HttpURLConnection conn = null;
             try {
-                URL url =  new URL ("http://104.248.168.181/REST/login/userLogin.php");
+                URL url = new URL("http://104.248.168.181/REST/login/userLogin.php");
                 conn = (HttpURLConnection) url.openConnection();
                 String username = usernameIn.getText();
                 String pw = passIn.getText();
-                String postData = "username="+username + "&password="+pw;
+                String postData = "username=" + username + "&password=" + pw;
                 conn.setDoOutput(true);
                 conn.setFixedLengthStreamingMode(postData.length());
-                OutputStream out = null;
+                OutputStream out;
                 out = conn.getOutputStream();
                 out.write(postData.getBytes());
                 if (conn.getResponseCode() == 200) {
-                    System.out.println("true");
                     InputStream in = conn.getInputStream();
                     BufferedReader br = new BufferedReader(new InputStreamReader(in));
                     String all = "", line;
-                    while((line = br.readLine()) !=null)
+                    while ((line = br.readLine()) != null)
                         all += line;
-                    JSONObject jsonObj = new JSONObject (json);
-                    System.out.println(all);
+                    JSONObject jsonObj = new JSONObject(all);
+                    if (jsonObj.get("status").equals(true)) {
+                        //login successful load main menu
+                        window.setScene(Menu.getScene());
+                    } else {
+                        // alert box ideally
+                        System.out.println("Login Failed Try again");
+                    }
                 }
 
             } catch (MalformedURLException e) {
@@ -78,11 +83,9 @@ public class Login extends Application {
             }
         });
         GridPane.setConstraints(loginButton, 0, 2);
-
-        grid.getChildren().addAll(userLabel, usernameIn, passLabel, passIn, loginButton);
-
-        Scene scene = new Scene(grid, 300, 200);
-        window.setScene(scene);
+        layout.getChildren().addAll(userLabel, usernameIn, passLabel, passIn, loginButton);
+        login = new Scene(layout, 300, 200);
+        window.setScene(login);
         window.show();
 
     }
