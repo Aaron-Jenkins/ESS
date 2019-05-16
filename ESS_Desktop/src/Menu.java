@@ -1,19 +1,8 @@
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import org.json.JSONObject;
-import org.json.JSONArray;
-import org.json.JSONException;
 
 public class Menu {
 
@@ -40,7 +29,7 @@ public class Menu {
         GridPane.setConstraints(button2, 1, 1);
         button2.setText("Allocate");
         button2.setOnAction(event -> {
-            Allocate.display("Allocator");
+            Allocate.display();
         });
 
         menu.getChildren().addAll(label1, button1, label2, button2);
