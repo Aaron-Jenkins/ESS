@@ -20,4 +20,4 @@ To use the system from either the cleaner or client's point of view, the ESS cle
 To use the system on a desktop from the manager's point of view, the ESS desktop application must be opened in the java IDE, and again, the main method must be run. Again, this should allow the user full access to the system and its functionality.
 
 #### -REST Client Process
-The web service can be found at the following URL: 
+The web service can be found at the following URL: http://104.248.168.181/REST/
