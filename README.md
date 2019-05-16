@@ -13,11 +13,11 @@ The rest interface is created using PHP and is used by all platforms to communic
 ### Installation Process 
 To install this software, download the service files by cloning the github repository onto your own system, the following steps needed to run the system depends on the user who is using the system.
 
-#### Mobile Application Process
+#### -Mobile Application Process
 To use the system from either the cleaner or client's point of view, the ESS cleaning application must be opened in android studio, and the main method must be run. This should allow full access to the software and its functionality.
 
-#### Desktop Application Process
+#### -Desktop Application Process
 To use the system on a desktop from the manager's point of view, the ESS desktop application must be opened in the java IDE, and again, the main method must be run. Again, this should allow the user full access to the system and its functionality.
 
-#### REST Client Process
+#### -REST Client Process
 The web service can be found at the following URL: 
