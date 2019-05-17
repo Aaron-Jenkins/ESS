@@ -1,8 +1,9 @@
-import com.sun.xml.internal.bind.v2.TODO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -13,6 +14,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 
 public class Allocate {
 
@@ -24,26 +26,62 @@ public class Allocate {
         Label label = new Label();
         label.setText("Allocate");
 
-        //Create  buttons
-
-        // http://104.248.168.181/REST/read/readAllPendingJobs.php
-        Button allocate = new Button("Allocate");
-        allocate.setOnAction(e ->{
-            //TODO FIX ME
-            // GET PENDING FUNCTION CALL HERE
-            getPending();
-
-        }
-        );
-
-
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(10, 10, 10, 10));
         layout.setVgap(0);
         layout.setHgap(10);
 
-        //Add buttons
-        layout.getChildren().addAll(label, allocate);
+        //Id column
+        TableColumn<pendingService, Integer> IdColumn = new TableColumn<>("Id");
+        IdColumn.setMinWidth(100);
+        IdColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
+
+        //userId column
+        TableColumn<pendingService, Integer> userIdColumn = new TableColumn<>("userId");
+        userIdColumn.setMinWidth(100);
+        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+        //serviceId column
+        TableColumn<pendingService, Integer> serviceIdColumn = new TableColumn<>("serviceId");
+        serviceIdColumn.setMinWidth(100);
+        serviceIdColumn.setCellValueFactory(new PropertyValueFactory<>("serviceId"));
+
+        //startDate column
+        TableColumn<pendingService, String> startDateColumn = new TableColumn<>("startDate");
+        startDateColumn.setMinWidth(100);
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+
+        //endDate column
+        TableColumn<pendingService, String> endDateColumn = new TableColumn<>("endDate");
+        endDateColumn.setMinWidth(100);
+        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+
+        //empId column
+        TableColumn<pendingService, Integer> empIdColumn = new TableColumn<>("empId");
+        empIdColumn.setMinWidth(100);
+        empIdColumn.setCellValueFactory(new PropertyValueFactory<>("empId"));
+
+        TableView<pendingService> table = new TableView<>();
+        table.setItems(jsonToList(Objects.requireNonNull(getPending())));
+        table.getColumns().addAll(IdColumn, userIdColumn, serviceIdColumn, startDateColumn, endDateColumn, empIdColumn);
+
+        /*
+        // create text fields
+        final TextField addId = new TextField();
+        addId.setPromptText("booking id");
+        addId.setMaxWidth(IdColumn.getPrefWidth());
+
+        final TextField addEmpId = new TextField();
+        addEmpId.setPromptText("employee id");
+        addEmpId.setMaxWidth(empIdColumn.getPrefWidth());
+
+        hb.getChildren().addAll(addFirstName, addLastName, addEmail, addButton);
+        hb.setSpacing(3);
+
+         */
+
+        //Add controls to layout
+        layout.getChildren().addAll(label, table);
         layout.setAlignment(Pos.CENTER);
         Scene scene = new Scene(layout);
         window.setScene(scene);
@@ -52,8 +90,8 @@ public class Allocate {
 
 
 
-    // Function to grab jsonObj
-    public static String getPending() {
+    // Function to grab jsonObj from rest
+    public static JSONObject getPending() {
         HttpURLConnection conn = null;
         try {
             URL url = new URL("http://104.248.168.181/REST/read/readAllPendingJobs.php");
@@ -66,19 +104,19 @@ public class Allocate {
                     all += line;
                 JSONObject jsonObj = new JSONObject(all);
                 //System.out.println(jsonObj);
-                getProduct(jsonObj);
-                return jsonObj.toString();
+                //jsonToList(jsonObj);
+                return jsonObj;
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            return e.toString();
+            System.out.println(e.toString());
         }
-        return "error";
+        return null;
     }
 
     // Loop through pending servies and convert to observable array list 
-    public static ObservableList<pendingService> getProduct(JSONObject jsonObj){
+    public static ObservableList<pendingService> jsonToList(JSONObject jsonObj){
         ObservableList<pendingService> services = FXCollections.observableArrayList();
         JSONArray ja = jsonObj.getJSONArray("service");
         for (int i = 0; i < ja.length(); i++) {
@@ -91,13 +129,6 @@ public class Allocate {
             services.add(ps);
         }
         System.out.println(services);
-        /*
-        services.add(new pendingService("Laptop", 859.00, 20));
-        services.add(new pendingService("Bouncy Ball", 2.49, 198));
-        services.add(new pendingService("Toilet", 99.00, 74));
-        services.add(new pendingService("The Notebook DVD", 19.99, 12));
-        services.add(new pendingService("Corn", 1.49, 856));
-        */
         return services;
     }
 }

@@ -47,6 +47,7 @@ public class Main extends Application {
         GridPane.setConstraints(passIn, 1, 1);
 
         Button loginButton = new Button("Log in!");
+        // Pass username and password to REST, if status comes back true login and display menu
         loginButton.setOnAction(event -> {
             HttpURLConnection conn = null;
             try {
