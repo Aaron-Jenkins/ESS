@@ -26,6 +26,8 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    //Setup variables
     private Button guestLogin;
     private Button userLogin;
     private EditText editUsername;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //setup the template
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button guestLogin = (Button) findViewById(R.id.guestLogin);
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    //Get username and password then
     @Override
     public void onClick(View v) {
         boolean loggedIn = false;
@@ -75,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
+    //Attempt to log the user in using the REST API
     public void loginUser() {
         Boolean res = false;
         url = "http://104.248.168.181/REST/login/userLogin.php";
@@ -84,9 +88,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onResponse(String response) {
                         try {
-                            System.out.println(response);
                             jsonObject = new JSONObject(response);
                             if(!jsonObject.isNull("status")){
+                                //Create intent for next activity and start it
                                 Intent intent = new Intent(context, UserHomeActivity.class);
                                 Bundle bundle=new Bundle();
                                 bundle.putBoolean("cleaning-loggedIn", Boolean.parseBoolean(jsonObject.getString("status")));
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         ) {
+            //Add the parameter to the POST header for the user login
             @Override
             protected Map<String, String> getParams() {
                 System.out.println(username + " -> " + password);
@@ -119,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return params;
             }
         };
+        //add the API reques to the Volley queue
         requestQueue.add(stringRequest);
 
     }
